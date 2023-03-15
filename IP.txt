@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+<h1>COUNTRY</h1>
+    <form action="http://localhost:8080/WebApplication2/ser" method="post">
+   Enter country1<input type="text" name="t1">
+  Enter country2<input type="text" name="t2">
+  Enter country3<input type="text" name="t3">
+  Enter country4<input type="text" name="t4">
+  <input type="submit">
+    </form>
+   
+   
+    <!-- onclick event to sort data--> <h5> click here to go <a href="http://localhost:8080/javaser/servletA"> servlet</a> </h5>
+    </body>
+</html>
+
+       
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author 21cse082
+ */
+@WebServlet(urlPatterns = {"/ser"})
+public class ser extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet servletA</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet servletA at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+            out.println("<h1> The entered cities are: </h1>");
+            String C=request.getParameter("t");
+             out.println("<h3>" + C + "</h3>");
+            String s=request.getParameter("t1");
+             out.println("<h3>" + s + "</h3>");
+             String s1=request.getParameter("t2");
+             out.println("<h3>" + s1 + "</h3>");
+             String s2=request.getParameter("t3");
+             out.println("<h3>" + s2 + "</h3>");
+             String s3=request.getParameter("t4");
+             out.println("<h3>" + s3 + "</h3>");
+   
+    int n = 4;
+              String names[] = { "Tiruvannamalai", "Madurai", "Theni","Trichy" };
+        String temp;
+        out.println("<h1> The sorted array is:</h1>");
+             for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+               
+                // to compare one string with other strings
+                if (names[i].compareTo(names[j]) > 0) {
+                    // swapping
+                    temp = names[i];
+                    names[i] = names[j];
+                    names[j] = temp;
+                }
+               
+            }
+        }
+             for (int i = 0; i < n; i++)
+             {
+ 
+               out.println("<h3>" + names[i] + "</h3>");  
+             }
+       
+               
+        }
+        finally {            
+            out.close();
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
